@@ -1,6 +1,6 @@
 use superstore; 
 
--- 1) Liczba klientów w podziale na segmenty
+-- 1) Number of customers by segment
 select * from rc_upload;
 select 
 	segment,
@@ -8,7 +8,7 @@ select
 from rc_upload 
 group by segment;
 
--- 2) Jak zmieniała się liczba klientów miesiąc do miesiąca
+-- 2) How the number of customers changed month to month
 select * from rc_upload; 
 
 with 
@@ -30,7 +30,7 @@ second_step as
 )
 select * from second_step;
 
--- 3) Jaka jest średnia różnica czasu pomiędzy złożeniem zamówienia a datą dostawy w zależności od rodzaju dostawy
+-- 3) What is the average time difference between order placement and delivery date depending on the type of delivery?
 select * from rc_upload;
 
 select 
@@ -66,7 +66,7 @@ order by
 		when day_of_week = 'Sunday' then 7
 	end;
 
--- 5) W której kategorii i podkategorii sprzedaż jest największa
+-- 5) In which category and subcategory are sales the highest?
 select * from rc_upload; 
 
 select 
@@ -79,7 +79,7 @@ where
 group by cetegory, sub_category
 order by 1;
 
--- 6) Lista podkategorii z każdej kategorii gdzie sprzedaż jest największa
+-- 6) List of subcategories from each category where sales are the highest
 select * from rc_upload; 
 
 with 
@@ -107,7 +107,7 @@ where
 and 
 	total_sales_ranked = 1;
 
--- 7) Korelacja pomiędzy wielkością rabatów a wielkością sprzedaży w czasie (miesięcznie)
+-- 7) Correlation between discount volume and sales volume over time (monthly)
 select * from rc_upload; 
 
 with
@@ -146,7 +146,7 @@ second_step as
 select * from second_step 
 order by 1;
 
--- 8) Lista klientów oraz liczba zamówień na przestrzeni czasu
+-- 8) Customer list and number of orders over time
 select * from rc_upload; 
 
 with 
@@ -167,7 +167,7 @@ where
 	customer_name = 'Alex Avila'  -- przykład dla konkretnego klienta
 order by 1, 3;
 	
--- 9) W którym kwartale 2014 roku było najwięcej zamówień?
+-- 9) In which quarter of 2014 were there the most orders?
 select * from rc_upload;
 
 with 
@@ -199,7 +199,7 @@ where
 	ranked = 1
 order by 1;  -- w IV kwartale 2014 roku było najwięcej złożonych zamówień
 
--- 10) W których stanach (wskaż 5) jest najwyższa sprzedaż w podziale na produkty z kategorii 'Technology'
+-- 10) Which states (select 5) have the highest sales by product in the 'Technology' category?
 select * from rc_upload; 
 
 with 
@@ -229,7 +229,7 @@ select * from second_step
 where 
 	total_sales_ranked <= 5;
 
--- 11) 10 produktów, które tworzą najwyższy dochód (do której kategorii i subkategorii należą)
+-- 11) Top 10 Products That Create the Highest Income (Which Category and Subcategory Do They Belong to)
 select * from rc_upload; 
 
 with 
@@ -257,7 +257,7 @@ select * from second_step
 where 
 	total_profit_ranked <= 10;
 
--- 12) Jak zmieniają się sprzedaż i zyski w zależności od kategorii w 2014 roku
+-- 12) How sales and profits change by category in 2014
 select * from rc_upload; 
 
 select  
@@ -271,7 +271,7 @@ where
 group by date_format(order_date, '%Y-%m'), cetegory
 order by 2, 1;
 
--- 13) Wartość skumulowana sprzedaży miesiąc do miesiąca od 2014 roku do końca 2017
+-- 13) Cumulative sales value month-on-month from 2014 to the end of 2017
 select * from rc_upload;
 
 with 
@@ -290,11 +290,12 @@ second_step as
 	select 
 		order_date,
 		total_sales,
-		sum(total_sales) over(order by order_date) as cumulated_value
+		sum(total_sales) over(order by order_date) as cumulative_value
 	from first_step
 )
 select * from second_step 
 order by 1;
+
 
 
 
