@@ -39,7 +39,7 @@ select
 from rc_upload
 group by ship_mode;
 
--- 4) W jaki dzień tygodnia najczęściej składane są zamówienia
+-- 4) On which day of the week are orders most frequently placed? 
 select * from rc_upload; 
 
 select 
@@ -129,17 +129,17 @@ second_step as
 		year_and_month,
 		Pearson,
 		case 
-			when Pearson = -1 then 'Idealna ujemna korelacja'
-			when Pearson > -1 and Pearson < -0.7 then 'Silna / bardzo silna ujemna zależność'
-			when Pearson >= -0.7 and Pearson < -0.5 then 'Umiarkowana / silna ujemna zależność'
-			when Pearson >= -0.5 and Pearson < -0.3 then 'Słaba / umiarkowana ujemna zależność'
-			when Pearson >= -0.3 and Pearson < 0 then 'Bardzo słaba ujemna zależność'
-			when Pearson = 0 then 'Brak zależności liniowej'
-			when Pearson >= 0 and Pearson < 0.3 then 'Bardzo słaba zależność'
-			when Pearson >= 0.3 and Pearson < 0.5 then 'Słaba / umiarkowana zależność'
-			when Pearson >= 0.5 and Pearson < 0.7 then 'Umiarkowana / silna zależność'
-			when Pearson >= 0.7 and Pearson < 1 then 'Silna / bardzo silna zależność'
-			when Pearson = 1 then 'Idealna dodatnia korelacja'
+			when Pearson = -1 then 'Perfect negative correlation'
+			when Pearson > -1 and Pearson < -0.7 then 'Strong / very strong negative correlation'
+			when Pearson >= -0.7 and Pearson < -0.5 then 'Moderate / strong negative correlation'
+			when Pearson >= -0.5 and Pearson < -0.3 then 'Weak / moderate negative correlation'
+			when Pearson >= -0.3 and Pearson < 0 then 'Very weak negative correlation'
+			when Pearson = 0 then 'No linear relationship'
+			when Pearson >= 0 and Pearson < 0.3 then 'Very weak correlation'
+			when Pearson >= 0.3 and Pearson < 0.5 then 'Weak / moderate correlation'
+			when Pearson >= 0.5 and Pearson < 0.7 then 'Moderate / strong correlation'
+			when Pearson >= 0.7 and Pearson < 1 then 'Strong / very strong correlation'
+			when Pearson = 1 then 'Perfect positive correlation'
 		end as Pearson_definition
 	from first_step 
 )
@@ -164,7 +164,7 @@ first_step as
 )
 select * from first_step 
 where 
-	customer_name = 'Alex Avila'  -- przykład dla konkretnego klienta
+	customer_name = 'Alex Avila'  
 order by 1, 3;
 	
 -- 9) In which quarter of 2014 were there the most orders?
@@ -185,10 +185,10 @@ second_step as
 (
 	select 	
 		case 
-			when quarter_of_the_year = 1 then 'I kwartał'
-			when quarter_of_the_year = 2 then 'II kwartał'
-			when quarter_of_the_year = 3 then 'III kwartał'
-			when quarter_of_the_year = 4 then 'IV kwartał'
+			when quarter_of_the_year = 1 then 'I quarter'
+			when quarter_of_the_year = 2 then 'II quarter'
+			when quarter_of_the_year = 3 then 'III quarter'
+			when quarter_of_the_year = 4 then 'IV quarter'
 		end as quart,
 		order_count,
 		dense_rank() over (order by order_count desc) as ranked
@@ -197,7 +197,7 @@ second_step as
 select * from second_step 
 where 
 	ranked = 1
-order by 1;  -- w IV kwartale 2014 roku było najwięcej złożonych zamówień
+order by 1;  
 
 -- 10) Which states (select 5) have the highest sales by product in the 'Technology' category?
 select * from rc_upload; 
@@ -295,6 +295,7 @@ second_step as
 )
 select * from second_step 
 order by 1;
+
 
 
 
