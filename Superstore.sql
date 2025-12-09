@@ -70,13 +70,13 @@ order by
 select * from rc_upload; 
 
 select 
-	cetegory,
+	category,
 	sub_category,
 	sum(sales) as total_sales
 from rc_upload
 where 
-	cetegory is not null
-group by cetegory, sub_category
+	category is not null
+group by category, sub_category
 order by 1;
 
 -- 6) List of subcategories from each category where sales are the highest
@@ -86,24 +86,24 @@ with
 first_step as
 (
 	select  
-		cetegory,
+		category,
 		sub_category,
 		sum(sales) as total_sales
 	from rc_upload
-	group by cetegory, sub_category
+	group by category, sub_category
 ),
 second_step as
 (
 	select 
-		cetegory,
+		category,
 		sub_category,
 		total_sales,
-		row_number() over (partition by cetegory order by total_sales desc) as total_sales_ranked
+		row_number() over (partition by category order by total_sales desc) as total_sales_ranked
 	from first_step
 )
 select * from second_step
 where 
-	cetegory is not null
+	category is not null
 and 
 	total_sales_ranked = 1;
 
@@ -207,20 +207,20 @@ first_step as
 (
 	select 
 		state,
-		cetegory,
+		category,
 		sum(sales) as total_sales
 	from rc_upload
 	where 
 		state is not null
 	and 
-		cetegory = 'Technology'
-	group by state, cetegory 
+		category = 'Technology'
+	group by state, category 
 ),
 second_step as
 (
 	select 
 		state,
-		cetegory,
+		category,
 		total_sales,
 		row_number() over (order by total_sales desc) as total_sales_ranked
 	from first_step
@@ -236,17 +236,17 @@ with
 first_step as
 (
 	select 
-		cetegory,
+		category,
 		sub_category,
 		product_name,
 		sum(profit) as total_profit
 	from rc_upload
-	group by cetegory, sub_category, product_name
+	group by category, sub_category, product_name
 ),
 second_step as
 (
 	select 
-		cetegory,
+		category,
 		sub_category,
 		product_name,
 		total_profit,
@@ -262,13 +262,13 @@ select * from rc_upload;
 
 select  
 	date_format(order_date, '%Y-%m') as order_date,
-	cetegory,
+	category,
 	sum(sales) as total_sales,
 	sum(profit) as total_profit
 from rc_upload
 where 
 	extract(year from order_date) = 2014
-group by date_format(order_date, '%Y-%m'), cetegory
+group by date_format(order_date, '%Y-%m'), category
 order by 2, 1;
 
 -- 13) Cumulative sales value month-on-month from 2014 to the end of 2017
@@ -295,6 +295,7 @@ second_step as
 )
 select * from second_step 
 order by 1;
+
 
 
 
