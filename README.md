@@ -48,4 +48,4 @@ Dataset includes:
 3. Marketing campaigns that will help increase sales in first quarters of the analyzed period.
 
 # Dashboard
-
+[dashboard.pdf](https://github.com/user-attachments/files/25828290/dashboard.pdf)
