@@ -2,7 +2,7 @@
 This repository contains SQL code describing and analyzing the data concerns 'Superstore' using SQL and Power BI - the store with different kind of articles. 
 
 # Business problem
-Retail companies often face situations where their profits are unstable or declining even when sales are increasing. This aim of this project is to analyze the condition of such companies and  identify factors that may affect their profitability.
+Retail companies often face situations where their profits are unstable or declining even when sales are increasing. The aim of this project is to analyze the condition of such companies and  identify factors that may affect their profitability.
 
 # Dataset
 Dataset used for this project comes from the KajoData SQL course and contains information about the store's transactions, products and customers.
@@ -17,7 +17,7 @@ Dataset includes:
 
 # Tools
 - SQL - main analysis
-- Microsoft Power BI - dashboard and data visuazlization
+- Microsoft Power BI - dashboard and data visualization
 - Excel - preliminary data exploration
 
 # Project structure
@@ -30,7 +30,7 @@ Dataset includes:
 2. How sales and profits changed over time (2014-2017)?
 3. Why in 2015 profit decreased even if sales increased?
 4. In which months of 2014 sales were the highest and the lowest?
-5. How sales changed QoQin 2014-2017?
+5. How sales changed QoQ in 2014-2017?
 6. Which products generate the highest profits and which one the largest losses?
 7. How many customers are responsible for 75% of sales?
 8. Which state generates the highest sales and profit?
