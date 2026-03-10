@@ -209,7 +209,7 @@ group by category;
 
 -- Furnitures generate the highest sales nad at the same time the lowest profits.
 -- Products from Technology category generate the highest profits with the highest sales.
--- Office supplies category generate high profits with the lowest sales.
+-- Office supplies category generates high profits with the lowest sales.
 -- Conclusion: Company should focus on selling Office Supplies and Technology products, because they generate the highest profits with low sales.
 
 -- 10) What's the average time difference between placing and receiving an order?
